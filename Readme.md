@@ -27,7 +27,7 @@ function asset($path)
 ```
 
 ## Usage
-* Put your blade files in the `views\` folder.
+* Put your blade files in the `views/` folder.
 ``` html
 <h1>Welcome!</h1>
 <p>
@@ -35,12 +35,13 @@ function asset($path)
 </p> 
 ```
 
-* Create a 'controller' for each page in the `pages\` folder
+* Create a 'controller' for each page in the `pages/` folder
 ``` php
 class Page
 {
 	function show($renderer)
 	{
+		//Render the views/welcome.blade.php file
 		return $renderer->render('welcome', []);
 	}
 }
