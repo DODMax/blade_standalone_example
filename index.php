@@ -11,7 +11,11 @@ $paths = array(__DIR__ . '/views');
 $renderer = new BladeRenderer($paths, array('cache_path' => __DIR__ . '/cache'));
 
 //Load page based on uri
-$path = isset($_GET['uri']) ? $_GET['uri'] : 'index';
+$url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$path = substr($url, strrpos($url, '/') + 1);
+if (empty($path)) {
+	$path = "index";
+} 
 require __DIR__ . '/pages/' . $path . '.php';
 
 //Render page
