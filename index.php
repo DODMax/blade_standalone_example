@@ -13,8 +13,7 @@ $renderer = new BladeRenderer($paths, array('cache_path' => __DIR__ . '/cache'))
 //Load page based on uri
 $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $pos = strpos($url, BASE_URL);
-$path = substr($url, $pos + strlen(BASE_URL));
-$path = substr($path, strpos($path, ' ') +1);
+$path = substr($url, $pos + strlen(BASE_URL) +1);
 $dir = scandir(__DIR__ . '/pages/');
 $files[] = '';
 if (empty($path)) {
