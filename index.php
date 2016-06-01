@@ -12,12 +12,16 @@ $renderer = new BladeRenderer($paths, array('cache_path' => __DIR__ . '/cache'))
 
 //Load page based on uri
 $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-$path = substr($url, strrpos($url, '/') + 1);
+$pos = strpos($url, BASE_URL);
+$path = substr($url, $pos + strlen(BASE_URL) +1);
 if (empty($path)) {
-	$path = "index";
+    $path = "index";
 } 
-require __DIR__ . '/pages/' . $path . '.php';
-
+if (!file_exists(__DIR__ . '/pages/' . $path . '.php')) {
+    return header('location: http://' . BASE_URL . '/404');
+} else {
+    require __DIR__ . '/pages/' . $path . '.php';
+}
 //Render page
 $page = new Page();
 echo $page->show($renderer);
